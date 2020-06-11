@@ -32,7 +32,7 @@ mqttc.on_connect = on_connect
 mqttc.on_subscribe = on_subscribe
 mqttc.on_unsubscribe = on_unsubscribe    
 
-data_collect = np.arange(0, 20, 1)
+num = np.arange(0, 20, 1)
 t = np.arange(0, 20, 1)
 
 # XBee setting
@@ -54,7 +54,7 @@ for i in range(0, 25):
     
     if i > 5:
         line = s.readline()
-        data_collect[i-5] = int (line)
+        num[i-5] = int (line)
         line = s.readline() 
         mqttc.publish(topic, line)
         line = s.readline()  
@@ -64,7 +64,7 @@ for i in range(0, 25):
         line = s.readline() 
         mqttc.publish(topic, line)
         
-plt.plot(t, data_collect)
+plt.plot(t, num)
 plt.xlabel('timestamp')
 plt.ylabel('number')
 plt.title("# collected data plot")
